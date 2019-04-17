@@ -4,6 +4,9 @@ using UnityEngine;
 using mygame;
 using System.IO;
 
+/// <summary>
+/// 
+/// </summary>
 public class GameManager : MonoBehaviour
 {
     public GameObject playerPrefab;
@@ -17,7 +20,7 @@ public class GameManager : MonoBehaviour
         test = ItemManager.instance;
         PlayerDataManager.instance.playerPrefab = playerPrefab;
         TextAsset dictionarytext = (TextAsset)Resources.Load("Dictionary");
-        ItemManager.instance.dictionaryInit(dictionarytext.text);
+        ItemManager.instance.DictionaryInit(dictionarytext.text);
         PlayerDataManager.instance.PlayerCreate("NewPlayer");
         camera.GetComponent<CameraFollow>().target = PlayerDataManager.instance.player.transform;
     }

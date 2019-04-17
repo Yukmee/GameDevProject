@@ -3,22 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace mygame
 {
+
+    /// <summary>
+    /// 物品系统管理器，包含物品栏、装备栏&相关方法
+    /// </summary>
     public class ItemManager
     {
         public static ItemManager instance;
+        
         public static void Load(string path)
         {
             instance = new ItemManager();
         }
-        public void dictionaryInit(string jsonString)
+        
+        public void DictionaryInit(string jsonString)
         {
             cover = (ItemCover)JsonUtility.FromJson(jsonString,typeof(ItemCover));
             itemDictionary = new Dictionary<int, Item>();
-            for(int i = 0; i < cover.itemList.Count; i++)
+            foreach (var t in cover.itemList)
             {
-                itemDictionary.Add(cover.itemList[i].itemId, cover.itemList[i]);
+                itemDictionary.Add(t.itemId, t);
             }
         }
+        
         public ItemCover cover;
         public Dictionary<int, Item> itemDictionary;//物品字典
         public List<ItemBlock> weaponList = new List<ItemBlock>();//武器栏
