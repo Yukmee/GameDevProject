@@ -11,10 +11,7 @@ namespace mygame
     {
         public string name;
         public int level;
-        
-        // To display: 最大血条
         public int maxHealth;
-        
         public int maxMana;
         public int baseHealth;
         public int baseMana;

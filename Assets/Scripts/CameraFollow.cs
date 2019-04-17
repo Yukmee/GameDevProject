@@ -15,7 +15,6 @@ public class CameraFollow : MonoBehaviour
         offset = transform.position - target.position;
     }
 
-
     void FixedUpdate()
     {
         // Create a postion the camera is aiming for based on the offset from the target.

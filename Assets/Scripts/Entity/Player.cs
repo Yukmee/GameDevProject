@@ -13,11 +13,9 @@ namespace mygame
         public float critRate;
         public float critRateBonus;
         public float finalCritRate;
-        
         public float critPower;
         public float critPowerBonus;
         public float finalCritPower;
-        
         public int skillPoint;
     }
 }

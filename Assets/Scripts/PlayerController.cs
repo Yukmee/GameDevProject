@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using mygame;
-
 public enum PlayerState
 {
     walk,
@@ -10,29 +9,24 @@ public enum PlayerState
     attack,
     skillCast
 }
-
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 5f; // The speed that the player will move at.
-    public float attackCoolDown = 0.2f; // 攻击间隔
+    public float speed = 5f;            // The speed that the player will move at.
+    public float attackCoolDown = 0.2f;//攻击间隔
     public PlayerState state;
-    float attackTimeStamp; // 攻击时间戳
-    float dashTimeStamp; // 冲刺时间戳
-    public float dashSpeed = 15f; // 冲刺速度
-    public float dashLast = 0.4f; // 冲刺持续时间
-
+    float attackTimeStamp;//攻击时间戳
+    float dashTimeStamp;//冲刺时间戳
+    public float dashSpeed = 15f;//冲刺速度
+    public float dashLast = 0.4f;//冲刺持续时间
     public PlayerManager playerManager;
-
-    Vector3 dashVector; // 决定冲刺方向的向量
+    Vector3 dashVector;//决定冲刺方向的向量
     CharacterController moveController;
-
-    public
-        Vector3 movement; // The vector to store the direction of the player's movement.
-
-    Animator anim; // Reference to the animator component.
-    Rigidbody playerRigidbody; // Reference to the player's rigidbody.
-    int floorMask; // A layer mask so that a ray can be cast just at gameobjects on the floor layer.
-    float camRayLength = 100f; // The length of the ray from the camera into the scene.
+    public 
+    Vector3 movement;                   // The vector to store the direction of the player's movement.
+    Animator anim;                      // Reference to the animator component.
+    Rigidbody playerRigidbody;          // Reference to the player's rigidbody.
+    int floorMask;                      // A layer mask so that a ray can be cast just at gameobjects on the floor layer.
+    float camRayLength = 100f;          // The length of the ray from the camera into the scene.
 
     void Awake()
     {
@@ -49,39 +43,34 @@ public class PlayerController : MonoBehaviour
         playerManager = GetComponent<PlayerManager>();
         ItemManager.instance.nowWeapon.item = ItemManager.instance.cover.itemList[0];
     }
-
     void FixedUpdate()
     {
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
-        Dash(h, v);
-        Move(h, v); //移动方法
-        Turning(); //转向方法，未完成
-        Attack(); //攻击方法
+        Dash(h,v);
+        Move(h, v);//移动方法
+        Turning();//转向方法，未完成
+        Attack();//攻击方法
         Cast();
     }
 
-    void Attack() //攻击
+    void Attack()//攻击
     {
         if (Input.GetButton("Fire1") && Time.time >= attackTimeStamp && ItemManager.instance.nowWeapon != null)
         {
-            Item nowWeapon = ItemManager.instance.nowWeapon.item; // 获取当前武器
+            Item nowWeapon = ItemManager.instance.nowWeapon.item;//获取当前武器
             Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit floorHit;
             if (Physics.Raycast(camRay, out floorHit, camRayLength, floorMask))
             {
                 Vector3 playerToMouse = floorHit.point - transform.position;
                 playerToMouse.y = 0f;
-                if (nowWeapon.type == ItemType.pistol || nowWeapon.type == ItemType.assaultRifle ||
-                    nowWeapon.type == ItemType.sniperRifle)
+                if (nowWeapon.type == ItemType.pistol||nowWeapon.type == ItemType.assaultRifle|| nowWeapon.type == ItemType.sniperRifle)
                 {
                     playerManager.GetCommand(new AttackCommand());
                     GameObject bullet;
-                    bullet =
-                        Instantiate(Resources.Load("Prefab/TestBullet"), transform.position,
-                            new Quaternion()) as GameObject;
-                    bullet.GetComponent<TestBullet>().damage = new Damage(nowWeapon.maxatk, nowWeapon.minatk,
-                        nowWeapon.critRate, nowWeapon.critPower);
+                    bullet = Instantiate(Resources.Load("Prefab/TestBullet"), transform.position, new Quaternion()) as GameObject;
+                    bullet.GetComponent<TestBullet>().damage = new Damage(nowWeapon.maxatk, nowWeapon.minatk, nowWeapon.critRate, nowWeapon.critPower);
                     bullet.GetComponent<TestBullet>().fire(playerToMouse, nowWeapon.bulletSpeed);
                     attackTimeStamp = Time.time + attackCoolDown;
                 }
@@ -89,23 +78,19 @@ public class PlayerController : MonoBehaviour
                 {
                     playerManager.GetCommand(new AttackCommand());
                     GameObject bullet;
-                    bullet =
-                        Instantiate(Resources.Load("Prefab/TestBullet"), transform.position,
-                            new Quaternion()) as GameObject;
-                    bullet.GetComponent<TestBullet>().damage = new Damage(nowWeapon.maxatk, nowWeapon.minatk,
-                        nowWeapon.critRate, nowWeapon.critPower);
+                    bullet = Instantiate(Resources.Load("Prefab/TestBullet"), transform.position, new Quaternion()) as GameObject;
+                    bullet.GetComponent<TestBullet>().damage = new Damage(nowWeapon.maxatk, nowWeapon.minatk, nowWeapon.critRate, nowWeapon.critPower);
                     bullet.GetComponent<TestBullet>().fire(playerToMouse, nowWeapon.bulletSpeed);
                     attackTimeStamp = Time.time + attackCoolDown;
                 }
             }
         }
     }
-
-    void Dash(float h, float v) // 冲刺
+    void Dash(float h,float v)//冲刺
     {
         if (state == PlayerState.dash)
         {
-            if (Time.time >= dashTimeStamp - 0.1f && Time.time < dashTimeStamp)
+            if (Time.time >= dashTimeStamp - 0.1f&&Time.time<dashTimeStamp)
             {
                 dashVector = dashVector * ((dashTimeStamp - Time.time) / 0.1f);
                 moveController.SimpleMove(dashVector);
@@ -114,14 +99,12 @@ public class PlayerController : MonoBehaviour
             {
                 moveController.SimpleMove(dashVector);
             }
-
             if (Time.time >= dashTimeStamp)
             {
                 state = PlayerState.walk;
             }
         }
-
-        if (Input.GetButtonDown("Jump") && state != PlayerState.dash && (h != 0 || v != 0))
+        if (Input.GetButtonDown("Jump")&&state!=PlayerState.dash&&(h!=0||v!=0))
         {
             playerManager.GetCommand(new DashCommand(h, v));
             dashVector = new Vector3(h, 0f, v).normalized * dashSpeed;
@@ -129,14 +112,13 @@ public class PlayerController : MonoBehaviour
             dashTimeStamp = Time.time + dashLast;
         }
     }
-
-    void Cast() // 释放技能
+    void Cast()//释放技能
     {
         Vector3 aim = Input.mousePosition;
     }
-
     void Move(float h, float v)
     {
+
         if (state != PlayerState.dash)
         {
             playerManager.GetCommand(new MoveCommand(h, v));
@@ -153,6 +135,7 @@ public class PlayerController : MonoBehaviour
 
     void Turning()
     {
+        
         /*
         // Create a ray from the mouse cursor on screen in the direction of the camera.
         Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -180,6 +163,6 @@ public class PlayerController : MonoBehaviour
 
     void Animating(float h, float v)
     {
-        
+
     }
 }
