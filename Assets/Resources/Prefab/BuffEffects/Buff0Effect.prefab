@@ -4641,7 +4641,7 @@ ParticleSystem:
 --- !u!199 &9093053867600791737
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -4709,7 +4709,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9093053867600791738}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d49e600c670a50f44b9a06c6fe8df661, type: 3}
+  m_Script: {fileID: 11500000, guid: e1a47483dcb9d044b8f2a8b69a4b7403, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!135 &4256073027205050685

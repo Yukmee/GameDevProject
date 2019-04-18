@@ -28,6 +28,15 @@ public class PlayerController : MonoBehaviour
     int floorMask;                      // A layer mask so that a ray can be cast just at gameobjects on the floor layer.
     float camRayLength = 100f;          // The length of the ray from the camera into the scene.
 
+    public static Vector3 VectorRotate(Vector3 input, float angle)
+    {
+        float cos = Mathf.Cos(angle);
+        float sin = Mathf.Sin(angle);
+        Matrix4x4 m = new Matrix4x4(new Vector4(cos, 0, -sin, 0), new Vector4(0, 1, 0, 0), new Vector4(sin, 0, cos, 0), new Vector4(0, 0, 0, 1));
+        Vector3 output = m.MultiplyPoint(input);
+        return output;
+    }
+
     void Awake()
     {
         floorMask = LayerMask.GetMask("Floor");
@@ -41,7 +50,7 @@ public class PlayerController : MonoBehaviour
         playerRigidbody = GetComponent<Rigidbody>();
         moveController = GetComponent<CharacterController>();
         playerManager = GetComponent<PlayerManager>();
-        ItemManager.instance.nowWeapon.item = ItemManager.instance.cover.itemList[0];
+        ItemManager.instance.nowWeapon.item = ItemManager.instance.cover.itemList[1];
     }
     void FixedUpdate()
     {
@@ -81,6 +90,12 @@ public class PlayerController : MonoBehaviour
                     bullet = Instantiate(Resources.Load("Prefab/TestBullet"), transform.position, new Quaternion()) as GameObject;
                     bullet.GetComponent<TestBullet>().damage = new Damage(nowWeapon.maxatk, nowWeapon.minatk, nowWeapon.critRate, nowWeapon.critPower);
                     bullet.GetComponent<TestBullet>().fire(playerToMouse, nowWeapon.bulletSpeed);
+                    bullet = Instantiate(Resources.Load("Prefab/TestBullet"), transform.position, new Quaternion()) as GameObject;
+                    bullet.GetComponent<TestBullet>().damage = new Damage(nowWeapon.maxatk, nowWeapon.minatk, nowWeapon.critRate, nowWeapon.critPower);
+                    bullet.GetComponent<TestBullet>().fire(VectorRotate(playerToMouse,30), nowWeapon.bulletSpeed);
+                    bullet = Instantiate(Resources.Load("Prefab/TestBullet"), transform.position, new Quaternion()) as GameObject;
+                    bullet.GetComponent<TestBullet>().damage = new Damage(nowWeapon.maxatk, nowWeapon.minatk, nowWeapon.critRate, nowWeapon.critPower);
+                    bullet.GetComponent<TestBullet>().fire(VectorRotate(playerToMouse, -30), nowWeapon.bulletSpeed);
                     attackTimeStamp = Time.time + attackCoolDown;
                 }
             }
