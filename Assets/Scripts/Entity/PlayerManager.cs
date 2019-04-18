@@ -112,7 +112,7 @@ namespace mygame
         public override void OnDamageTaken(Damage damage)
         {
             int dam = Random.Range(damage.min, damage.max);
-            if (Random.Range(0, 100) > damage.critRate)
+            if (Random.Range(0, 100) <= damage.critRate)
             {
                 dam = (int)(dam * damage.critPower);
             }

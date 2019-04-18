@@ -34,9 +34,6 @@ public class PlayerController : MonoBehaviour
         float sin = Mathf.Sin(angle* Mathf.Deg2Rad);
         Matrix4x4 m = new Matrix4x4(new Vector4(cos, 0, -sin, 0), new Vector4(0, 1, 0, 0), new Vector4(sin, 0, cos, 0), new Vector4(0, 0, 0, 1));
         Vector3 output = m.MultiplyPoint(input);
-        Debug.Log(input);
-        Debug.Log(m.GetColumn(0));
-        Debug.Log(output);
         return output;
     }
 

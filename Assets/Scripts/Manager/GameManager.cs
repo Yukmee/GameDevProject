@@ -41,12 +41,12 @@ public class GameManager : MonoBehaviour
                 RaycastHit[] hits = Physics.RaycastAll(ray);
                 for (int i = 0; i < hits.Length; i++)
                 {
-                    if (hits[i].collider.gameObject.tag == "item")
+                    if (hits[i].collider.gameObject.tag == "Item")
                     {//
                         hits[i].collider.gameObject.GetComponent<ItemOnGround>().onPick();
                         break;
                     }
-                    else if (hits[i].collider.gameObject.tag == "chest")
+                    else if (hits[i].collider.gameObject.tag == "Chest")
                     {
                         hits[i].collider.gameObject.GetComponent<Chest>().onOpen();
                         break;

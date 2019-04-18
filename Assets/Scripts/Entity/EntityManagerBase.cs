@@ -12,6 +12,7 @@ namespace mygame
     public delegate void OnDamageTakenDelegate();
     public delegate void OnKillDelegate();
     public delegate void OnHitDelegate(EntityManagerBase victim);
+    [System.Serializable]
     public class Damage{
         public int max;
         public int min;

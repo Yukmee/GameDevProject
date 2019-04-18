@@ -10,11 +10,11 @@ namespace mygame
     public class TestBullet : MonoBehaviour
     {
         public Damage damage;
-        private void OnCollisionEnter(Collision collision)
+        private void OnTriggerEnter(Collider other)
         {
-            if (collision.gameObject.tag == "Enemy")
+            if (other.gameObject.tag == "Enemy")
             {
-                EnemyManager enenmyManager = collision.gameObject.GetComponent<EnemyManager>();
+                EnemyManager enenmyManager = other.gameObject.GetComponent<EnemyManager>();
                 enenmyManager.OnDamageTaken(damage);
                 Destroy(gameObject);
             }

@@ -19,15 +19,18 @@ namespace mygame
         public override void OnDamageTaken(Damage damage)
         {
             int dam = Random.Range(damage.min, damage.max);
-            if (Random.Range(0, 100) > damage.critRate)
+            Debug.Log(dam);
+            if (Random.Range(0, 100) <= damage.critRate)
             {
                 dam = (int)(dam * damage.critPower);
             }
+            Debug.Log(dam);
             dam = dam - enemy.finaldef;
             if (dam <= 0)
             {
                 dam = 1;
             }
+            
             enemy.nowHealth -= dam;
         }
         public override void OnDeath()
