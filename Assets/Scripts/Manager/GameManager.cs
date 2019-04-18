@@ -11,17 +11,19 @@ public class GameManager : MonoBehaviour
 {
     public GameObject playerPrefab;
     public Camera camera;
-    public ItemManager test;
+    public ItemManager itemManager;
+    public PlayerDataManager playerDataManager;
     // Start is called before the first frame update
     private void Awake()
     {
         PlayerDataManager.Load("");
         ItemManager.Load("");
-        test = ItemManager.instance;
+        itemManager = ItemManager.instance;
         PlayerDataManager.instance.playerPrefab = playerPrefab;
         TextAsset dictionarytext = (TextAsset)Resources.Load("Dictionary");
         ItemManager.instance.DictionaryInit(dictionarytext.text);
         PlayerDataManager.instance.PlayerCreate("NewPlayer");
+        playerDataManager = PlayerDataManager.instance;
         camera.GetComponent<CameraFollow>().target = PlayerDataManager.instance.player.transform;
     }
     void Start()

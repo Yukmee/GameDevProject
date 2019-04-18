@@ -6,6 +6,7 @@ namespace mygame
     /// <summary>
     /// 物品栏
     /// </summary>
+    [System.Serializable]
     public class ItemBlock
     {
         public Item item;

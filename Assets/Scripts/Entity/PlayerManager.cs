@@ -75,7 +75,7 @@ namespace mygame
             player.baseHealth = player.level * 10 + player.finalend * 5;
             player.maxHealth = player.baseHealth + player.extraHealth;
             player.baseMana = player.level * 10 + player.finalinte * 5;
-            player.maxMana = player.baseMana + player.maxMana;
+            player.maxMana = player.baseMana + player.extraMana;
         }
         public void Move(MoveCommand mc)
         {

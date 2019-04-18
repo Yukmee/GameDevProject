@@ -15,6 +15,7 @@ namespace mygame
         {
             if (item != null)
             {
+                ItemManager.instance.itemPick(gameObject);
                 Destroy(gameObject);
             }
         }

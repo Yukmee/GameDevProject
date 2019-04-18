@@ -7,6 +7,7 @@ namespace mygame
     /// <summary>
     /// 物品系统管理器，包含物品栏、装备栏&相关方法
     /// </summary>
+    [System.Serializable]
     public class ItemManager
     {
         public static ItemManager instance;

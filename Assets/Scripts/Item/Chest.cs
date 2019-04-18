@@ -29,7 +29,7 @@ namespace mygame
         {
             if (!empty)
             {
-                if (_item != null)
+                if (_item != null&&_item.name!="")
                 {
                     GameObject item = Instantiate(Resources.Load("Prefab/ItemOnGround"), transform.position, new Quaternion()) as GameObject;
                     ItemOnGround iog = item.AddComponent<ItemOnGround>();
