@@ -30,10 +30,13 @@ public class PlayerController : MonoBehaviour
 
     public static Vector3 VectorRotate(Vector3 input, float angle)
     {
-        float cos = Mathf.Cos(angle);
-        float sin = Mathf.Sin(angle);
+        float cos = Mathf.Cos(angle* Mathf.Deg2Rad);
+        float sin = Mathf.Sin(angle* Mathf.Deg2Rad);
         Matrix4x4 m = new Matrix4x4(new Vector4(cos, 0, -sin, 0), new Vector4(0, 1, 0, 0), new Vector4(sin, 0, cos, 0), new Vector4(0, 0, 0, 1));
         Vector3 output = m.MultiplyPoint(input);
+        Debug.Log(input);
+        Debug.Log(m.GetColumn(0));
+        Debug.Log(output);
         return output;
     }
 
@@ -92,10 +95,10 @@ public class PlayerController : MonoBehaviour
                     bullet.GetComponent<TestBullet>().fire(playerToMouse, nowWeapon.bulletSpeed);
                     bullet = Instantiate(Resources.Load("Prefab/TestBullet"), transform.position, new Quaternion()) as GameObject;
                     bullet.GetComponent<TestBullet>().damage = new Damage(nowWeapon.maxatk, nowWeapon.minatk, nowWeapon.critRate, nowWeapon.critPower);
-                    bullet.GetComponent<TestBullet>().fire(VectorRotate(playerToMouse,30), nowWeapon.bulletSpeed);
+                    bullet.GetComponent<TestBullet>().fire(VectorRotate(playerToMouse,10), nowWeapon.bulletSpeed);
                     bullet = Instantiate(Resources.Load("Prefab/TestBullet"), transform.position, new Quaternion()) as GameObject;
                     bullet.GetComponent<TestBullet>().damage = new Damage(nowWeapon.maxatk, nowWeapon.minatk, nowWeapon.critRate, nowWeapon.critPower);
-                    bullet.GetComponent<TestBullet>().fire(VectorRotate(playerToMouse, -30), nowWeapon.bulletSpeed);
+                    bullet.GetComponent<TestBullet>().fire(VectorRotate(playerToMouse, -10), nowWeapon.bulletSpeed);
                     attackTimeStamp = Time.time + attackCoolDown;
                 }
             }
