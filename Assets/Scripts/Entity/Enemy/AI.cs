@@ -19,6 +19,34 @@ public class AI : MonoBehaviour
         view.ai = this;
         View.transform.parent = transform;
     }
+    void StateChange(EnemyState aim)
+    {
+        if (aim == EnemyState.dead)
+        {
+            enemyManager.enemyState = aim;
+        }
+        else if (aim == EnemyState.attack)
+        {
+            if (enemyManager.enemyState != EnemyState.dead)
+            {
+                enemyManager.enemyState = aim;
+            }
+        }
+        else if (aim == EnemyState.move)
+        {
+            if (enemyManager.enemyState == EnemyState.stand)
+            {
+                enemyManager.enemyState = aim;
+            }
+        }
+        else if (aim == EnemyState.stand)
+        {
+            if (enemyManager.enemyState != EnemyState.dead)
+            {
+                enemyManager.enemyState = aim;
+            }
+        }
+    }
     void Start()
     {
         enemyManager = GetComponent<EnemyManager>();
@@ -30,7 +58,7 @@ public class AI : MonoBehaviour
             if (Vector3.Distance(transform.position, target.transform.position) >= viewRadius)
             {
                 target = null;
-                navMeshAgent.isStopped = true;
+                navMeshAgent.destination = this.transform.position;
             }
         }
     }
@@ -44,6 +72,10 @@ public class AI : MonoBehaviour
     void Attack()
     {
         //todo:攻击方法
+    }
+    void Move()
+    {
+
     }
     // Update is called once per frame
     void Update()
