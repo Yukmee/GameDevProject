@@ -52,7 +52,7 @@ namespace mygame
         public int agi; //敏捷
         public int minatk; //最小攻击
         public int maxatk; //最大攻击
-        public int atkCooldown; //攻击间隔
+        public float atkCooldown; //攻击间隔
         public float critRate; //暴击几率
         public float critPower; //暴击倍率
         public int bulletNum; //每次攻击发射子弹数量,霰弹枪用
