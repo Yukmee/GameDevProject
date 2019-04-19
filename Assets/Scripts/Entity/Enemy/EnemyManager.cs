@@ -35,7 +35,7 @@ namespace mygame
         }
         public override void OnDeath()
         {
-            base.OnDeath();
+            enemyState = EnemyState.dead;
         }
         private void Start()
         {

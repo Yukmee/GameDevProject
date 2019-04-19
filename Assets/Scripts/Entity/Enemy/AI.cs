@@ -12,14 +12,7 @@ public class AI : MonoBehaviour
     public EnemyView view;
     public EnemyManager enemyManager;
     public NavMeshAgent navMeshAgent;
-    private void Awake()
-    {
-        GameObject View = Instantiate(Resources.Load("Prefab/View"), transform.position, new Quaternion()) as GameObject;
-        view = View.GetComponent<EnemyView>();
-        view.ai = this;
-        View.transform.parent = transform;
-    }
-    void StateChange(EnemyState aim)
+    EnemyState StateChange(EnemyState aim)
     {
         if (aim == EnemyState.dead)
         {
@@ -46,11 +39,16 @@ public class AI : MonoBehaviour
                 enemyManager.enemyState = aim;
             }
         }
+        return enemyManager.enemyState;
     }
     void Start()
     {
         enemyManager = GetComponent<EnemyManager>();
         navMeshAgent = GetComponent<NavMeshAgent>();
+        GameObject View = Instantiate(Resources.Load("Prefab/View"), transform.position, new Quaternion()) as GameObject;
+        view = View.AddComponent<EnemyView>();
+        view.ai = this;
+        View.transform.parent = transform;
     }
     void CheckPlayer()
     {
@@ -75,10 +73,16 @@ public class AI : MonoBehaviour
     }
     void Move()
     {
-
+        if (target != null)
+        {
+            if (StateChange(EnemyState.move) == EnemyState.move)
+            {
+                navMeshAgent.SetDestination(target.transform.position);
+            }
+        }
     }
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         CheckPlayer();//目标在警戒范围外则丢失目标
         if (enemyManager.enemyState == EnemyState.attack || enemyManager.enemyState == EnemyState.dead)
@@ -93,5 +97,6 @@ public class AI : MonoBehaviour
         {
             CheckAttack();//目标在攻击范围内则攻击
         }
+        Move();
     }
 }

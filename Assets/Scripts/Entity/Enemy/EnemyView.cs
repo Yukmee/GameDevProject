@@ -13,6 +13,7 @@ namespace mygame
         }
         private void OnTriggerEnter(Collider other)
         {
+
             if (other.gameObject.tag == "Player")
             {
                 ai.target = other.gameObject;
