@@ -50,10 +50,11 @@ public class PlayerController : MonoBehaviour
         playerRigidbody = GetComponent<Rigidbody>();
         moveController = GetComponent<CharacterController>();
         playerManager = GetComponent<PlayerManager>();
-        ItemManager.instance.nowWeapon.item = ItemManager.instance.cover.itemList[1];
+        ItemManager.instance.nowWeapon.item = ItemManager.instance.cover.itemList[2];
     }
     void FixedUpdate()
     {
+        attackCoolDown = ItemManager.instance.nowWeapon.item.atkCooldown;
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
         Dash(h,v);
@@ -62,7 +63,13 @@ public class PlayerController : MonoBehaviour
         Attack();//攻击方法
         Cast();
     }
-
+    void fire(Vector3 playerToMouse, Item nowWeapon,float angle)
+    {
+        GameObject bullet;
+        bullet = Instantiate(Resources.Load("Prefab/TestBullet"), transform.position, new Quaternion()) as GameObject;
+        bullet.GetComponent<TestBullet>().damage = new Damage(nowWeapon.maxatk, nowWeapon.minatk, nowWeapon.critRate, nowWeapon.critPower);
+        bullet.GetComponent<TestBullet>().fire(VectorRotate(playerToMouse, angle), nowWeapon.bulletSpeed);
+    }
     void Attack()//攻击
     {
         if (Input.GetButton("Fire1") && Time.time >= attackTimeStamp && ItemManager.instance.nowWeapon != null)
@@ -77,25 +84,20 @@ public class PlayerController : MonoBehaviour
                 if (nowWeapon.type == ItemType.pistol||nowWeapon.type == ItemType.assaultRifle|| nowWeapon.type == ItemType.sniperRifle)
                 {
                     playerManager.GetCommand(new AttackCommand());
-                    GameObject bullet;
-                    bullet = Instantiate(Resources.Load("Prefab/TestBullet"), transform.position, new Quaternion()) as GameObject;
-                    bullet.GetComponent<TestBullet>().damage = new Damage(nowWeapon.maxatk, nowWeapon.minatk, nowWeapon.critRate, nowWeapon.critPower);
-                    bullet.GetComponent<TestBullet>().fire(playerToMouse, nowWeapon.bulletSpeed);
+                    fire(playerToMouse, nowWeapon, 0);
+                    for (int i = 0; i < nowWeapon.fireMultiply - 1; i++)
+                    {
+                        fire(playerToMouse, nowWeapon, Random.Range(-3*(i+1), 3*(i+1)));
+                    }
                     attackTimeStamp = Time.time + attackCoolDown;
                 }
                 else if (nowWeapon.type == ItemType.shotgun)
                 {
                     playerManager.GetCommand(new AttackCommand());
-                    GameObject bullet;
-                    bullet = Instantiate(Resources.Load("Prefab/TestBullet"), transform.position, new Quaternion()) as GameObject;
-                    bullet.GetComponent<TestBullet>().damage = new Damage(nowWeapon.maxatk, nowWeapon.minatk, nowWeapon.critRate, nowWeapon.critPower);
-                    bullet.GetComponent<TestBullet>().fire(playerToMouse, nowWeapon.bulletSpeed);
-                    bullet = Instantiate(Resources.Load("Prefab/TestBullet"), transform.position, new Quaternion()) as GameObject;
-                    bullet.GetComponent<TestBullet>().damage = new Damage(nowWeapon.maxatk, nowWeapon.minatk, nowWeapon.critRate, nowWeapon.critPower);
-                    bullet.GetComponent<TestBullet>().fire(VectorRotate(playerToMouse,10), nowWeapon.bulletSpeed);
-                    bullet = Instantiate(Resources.Load("Prefab/TestBullet"), transform.position, new Quaternion()) as GameObject;
-                    bullet.GetComponent<TestBullet>().damage = new Damage(nowWeapon.maxatk, nowWeapon.minatk, nowWeapon.critRate, nowWeapon.critPower);
-                    bullet.GetComponent<TestBullet>().fire(VectorRotate(playerToMouse, -10), nowWeapon.bulletSpeed);
+                    for(int i = 0; i < nowWeapon.bulletNum; i++)
+                    {
+                        fire(playerToMouse, nowWeapon, Random.Range(-30,30));
+                    }
                     attackTimeStamp = Time.time + attackCoolDown;
                 }
             }
