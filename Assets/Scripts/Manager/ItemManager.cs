@@ -41,32 +41,43 @@ namespace mygame
 
         public bool equipIn(Item equipment)//将某件物品的附加属性增加至玩家
         {
-            Player player = PlayerDataManager.instance.playerData;
-            player.defbonus += equipment.def;
-            player.intebonus += equipment.inte;
-            player.strbonus += equipment.str;
-            player.agibonus += equipment.agi;
-            player.endbonus += equipment.end;
-            for(int i = 0; i < equipment.effectid.Count; i++)
+            if (equipment != null)
             {
-                
+                Player player = PlayerDataManager.instance.playerData;
+                player.defbonus += equipment.def;
+                player.intebonus += equipment.inte;
+                player.strbonus += equipment.str;
+                player.agibonus += equipment.agi;
+                player.endbonus += equipment.end;
+                for (int i = 0; i < equipment.effectid.Count; i++)
+                {
+                    
+                    BuffBase b = BuffMethods.GetBuff(equipment.effectid[i]);
+                    Debug.Log(b.describe);
+                    PlayerDataManager.instance.playerManager.BuffIn(b);
+                }
             }
             return true;
         }
 
         public bool equipOut(Item equipment)//将某件物品的附加属性从玩家身上移除
         {
-            Player player = PlayerDataManager.instance.playerData;
-            player.defbonus -= equipment.def;
-            player.intebonus -= equipment.inte;
-            player.strbonus -= equipment.str;
-            player.agibonus -= equipment.agi;
-            player.endbonus -= equipment.end;
-            for (int i = 0; i < equipment.effectid.Count; i++)
+            if (equipment != null)
             {
-
+                Player player = PlayerDataManager.instance.playerData;
+                player.defbonus -= equipment.def;
+                player.intebonus -= equipment.inte;
+                player.strbonus -= equipment.str;
+                player.agibonus -= equipment.agi;
+                player.endbonus -= equipment.end;
+                for (int i = 0; i < equipment.effectid.Count; i++)
+                {
+                    BuffBase b = BuffMethods.GetBuff(equipment.effectid[i]);
+                    PlayerDataManager.instance.playerManager.Buffout(b);
+                }
             }
             return false;
+            
         }
 
         public string equip(ItemBlock aimItemBlock)//选择一件道具并装备，返回相关信息

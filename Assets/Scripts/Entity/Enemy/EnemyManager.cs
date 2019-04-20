@@ -19,6 +19,10 @@ namespace mygame
         public override void OnDamageTaken(Damage damage)
         {
             int dam = Random.Range(damage.min, damage.max);
+            if (damage.attacker != null)
+            {
+                damage.attacker.OnHit(this);
+            }
             Debug.Log(dam);
             if (Random.Range(0, 100) <= damage.critRate)
             {
