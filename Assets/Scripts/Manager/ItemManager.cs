@@ -31,7 +31,6 @@ namespace mygame
         public Dictionary<int, Item> itemDictionary;//物品字典
         public List<ItemBlock> weaponList = new List<ItemBlock>();//武器栏
         public List<ItemBlock> armorList = new List<ItemBlock>();//护甲栏
-        public List<ItemBlock> shieldList = new List<ItemBlock>();//护盾栏
         public List<ItemBlock> ringList = new List<ItemBlock>();//饰品栏
         public List<ItemBlock> expendableList = new List<ItemBlock>();//消耗品栏
         public List<ItemBlock> otherList = new List<ItemBlock>();//其他道具栏
@@ -122,10 +121,6 @@ namespace mygame
             else if (item.type == ItemType.armor)
             {
                 armorList.Add(new ItemBlock(item));
-            }
-            else if (item.type == ItemType.shield)
-            {
-                shieldList.Add(new ItemBlock(item));
             }
             else if (item.type == ItemType.ring)
             {
