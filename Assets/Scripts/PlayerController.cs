@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
         playerRigidbody = GetComponent<Rigidbody>();
         moveController = GetComponent<CharacterController>();
         playerManager = GetComponent<PlayerManager>();
-        ItemManager.instance.equip(new ItemBlock (ItemManager.instance.cover.itemList[3]));
+        ItemManager.instance.equip(new ItemBlock (ItemManager.instance.cover.itemList[2]));
     }
     void FixedUpdate()
     {

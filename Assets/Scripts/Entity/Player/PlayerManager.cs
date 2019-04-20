@@ -77,6 +77,18 @@ namespace mygame
             player.baseMana = player.level * 10 + player.finalinte * 5;
             player.maxMana = player.baseMana + player.extraMana;
         }
+        public void ExpUpdate()
+        {
+            if (player.exp >= player.level * 1000)
+            {
+                player.level++;
+                player.end++;
+                player.str++;
+                player.inte++;
+                player.agi++;
+                player.exp -= player.level * 1000;
+            }
+        }
         public void Move(MoveCommand mc)
         {
             if (moveDelegate != null)
@@ -142,6 +154,7 @@ namespace mygame
                 updateDelegate();
             }
             EntityDataUpdate();
+            ExpUpdate();
         }
     }
 }

@@ -38,10 +38,10 @@
 "requLevel":1,
 "minatk":1,
 "maxatk":1,
-"atkCooldown":0.12,
+"atkCooldown":0.08,
 "bulletNum":1,
 "bulletSpeed":20,
-"fireMultiply":2,
+"fireMultiply":1,
 "bulletScale":1,
 "effectid":[0]
 },

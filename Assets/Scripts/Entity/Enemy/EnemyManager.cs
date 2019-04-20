@@ -15,6 +15,7 @@ namespace mygame
     public class EnemyManager: EntityManagerBase
     {
         public Enemy enemy;
+        public int deathcount = 0;
         public EnemyState enemyState;
         public override void OnDamageTaken(Damage damage)
         {
@@ -39,6 +40,8 @@ namespace mygame
         public override void OnDeath()
         {
             enemyState = EnemyState.dead;
+            Destroy(gameObject, 0.8f);
+            deathcount = 1;
         }
         private void Start()
         {
@@ -46,7 +49,7 @@ namespace mygame
         }
         private void Update()
         {
-            if (enemy.nowHealth <= 0)
+            if (enemy.nowHealth <= 0 && deathcount == 0)
             {
                 OnDeath();
             }

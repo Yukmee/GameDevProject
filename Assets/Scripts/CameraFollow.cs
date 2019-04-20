@@ -12,7 +12,7 @@ public class CameraFollow : MonoBehaviour
     void Start()
     {
         // Calculate the initial offset.
-        offset = transform.position - target.position;
+        offset = new Vector3(0.89f, 5.63f, -3f);
     }
 
     void FixedUpdate()

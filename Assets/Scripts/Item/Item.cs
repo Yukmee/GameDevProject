@@ -16,7 +16,8 @@ namespace mygame
         shield,
         ring,
         expendable,
-        other
+        other,
+        necklace
     }
 
     /// <summary>
@@ -36,30 +37,30 @@ namespace mygame
     public class Item
     {
         public int itemId; //物品id
-        public ItemType type; //物品类型
-        public string name; //物品名称
-        public string describe; //物品描述
-        public Color color; //物品稀有程度
-        public int ItemLevel; //物品等级,决定物品效果和价格
+        public ItemType type; //物品类型 <-----
+        public string name; //物品名称 <-----
+        public string describe; //物品描述 <-----
+        public Color color; //物品稀有程度 <-----
+        public int ItemLevel; //物品等级,决定物品效果和价格 <-----
 
-        public int requLevel; //需求等级
+        public int requLevel; //需求等级 <-----
 
         //以下是装备用属性
-        public int def; //防御
-        public int str; //力量
-        public int end; //耐力
-        public int inte; //智力
-        public int agi; //敏捷
-        public int minatk; //最小攻击
-        public int maxatk; //最大攻击
-        public float atkCooldown; //攻击间隔
-        public float critRate; //暴击几率
-        public float critPower; //暴击倍率
+        public int def; //防御 <-----
+        public int str; //力量 <-----
+        public int end; //耐力 <-----
+        public int inte; //智力 <-----
+        public int agi; //敏捷 <-----
+        public int minatk; //最小攻击 <-----
+        public int maxatk; //最大攻击 <-----
+        public float atkCooldown; //攻击间隔 <-----
+        public float critRate; //暴击几率 <-----
+        public float critPower; //暴击倍率 <-----
         public int bulletNum; //每次攻击发射子弹数量,霰弹枪用
-        public int bulletSpeed; //子弹飞行速度
+        public int bulletSpeed; //子弹飞行速度 <-----
         public float bulletScale;//子弹大小
 
-        public int fireMultiply; //多重射击
+        public int fireMultiply; //多重射击 <-----
 
         //以下是护盾用属性
         public float recoverSpeed; //恢复速度
@@ -68,10 +69,10 @@ namespace mygame
         public int shieldPower; //护盾容量
 
         //以下是消耗品用属性
-        public int maxpile; //堆叠上限
-        public int hpRecover; //消耗品用属性，hp回复量
-        public int mpRecover; //消耗品用属性，mp回复量
-        public List<int> effectid; //道具特殊效果的id
+        public int maxpile; //堆叠上限 <-----
+        public int hpRecover; //消耗品用属性，hp回复量 <-----
+        public int mpRecover; //消耗品用属性，mp回复量 <-----
+        public List<int> effectid; //道具特殊效果的id Buffs.cs:BuffMethods.GetBuffdescribe
 
         private static TOut TransReflection<TIn, TOut>(TIn tIn)
         {
