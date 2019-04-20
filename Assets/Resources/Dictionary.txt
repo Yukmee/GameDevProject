@@ -25,7 +25,8 @@
 "atkCooldown":1.2,
 "bulletNum":4,
 "bulletSpeed":15,
-"fireMultiply":1
+"fireMultiply":1,
+"effectid":[0]
 },
 {
 "itemId":2,
@@ -38,7 +39,8 @@
 "atkCooldown":0.1,
 "bulletNum":1,
 "bulletSpeed":20,
-"fireMultiply":3
+"fireMultiply":3,
+"effectid":[0]
 }
 ]
 }

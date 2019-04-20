@@ -18,11 +18,20 @@ namespace mygame
         public int min;
         public float critRate;
         public float critPower;
+        public EntityManagerBase attacker;
         public Damage(int _max,int _min,float _critRate,float _critPower) {
             max = _max;
             min = _min;
             critPower = _critPower;
             critRate = _critRate;
+        }
+        public Damage(int _max, int _min, float _critRate, float _critPower, EntityManagerBase _attacker)
+        {
+            max = _max;
+            min = _min;
+            critPower = _critPower;
+            critRate = _critRate;
+            attacker = _attacker;
         }
     }
     public class Heal

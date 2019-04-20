@@ -51,7 +51,10 @@ namespace mygame
                 player.endbonus += equipment.end;
                 for (int i = 0; i < equipment.effectid.Count; i++)
                 {
-
+                    
+                    BuffBase b = BuffMethods.GetBuff(equipment.effectid[i]);
+                    Debug.Log(b.describe);
+                    PlayerDataManager.instance.playerManager.BuffIn(b);
                 }
             }
             return true;
@@ -69,7 +72,8 @@ namespace mygame
                 player.endbonus -= equipment.end;
                 for (int i = 0; i < equipment.effectid.Count; i++)
                 {
-
+                    BuffBase b = BuffMethods.GetBuff(equipment.effectid[i]);
+                    PlayerDataManager.instance.playerManager.Buffout(b);
                 }
             }
             return false;

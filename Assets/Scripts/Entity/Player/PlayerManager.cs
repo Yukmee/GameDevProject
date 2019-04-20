@@ -107,6 +107,7 @@ namespace mygame
         }
         public override void OnHit(EntityManagerBase victim)
         {
+            Debug.Log("hit");
             base.OnHit(victim);
         }
         public override void OnDamageTaken(Damage damage)
