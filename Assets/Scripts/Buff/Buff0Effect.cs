@@ -9,7 +9,7 @@ namespace mygame
         public Damage damage;
         void Start()
         {
-            Destroy(this.gameObject, 1.2f);
+            Destroy(this.gameObject, 1.5f);
         }
 
         private void OnCollisionEnter(Collision collision)
