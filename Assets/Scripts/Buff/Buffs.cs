@@ -56,7 +56,6 @@ namespace mygame
             describe = "击中时10%几率造成爆炸";
             id = 0;
         }
-        //todo: 寻找粒子素材 修复物理效果
         public void OnExecute(EntityManagerBase victim)
         {
             if(UnityEngine.Random.Range(0, 100) <= 10)

@@ -41,6 +41,21 @@ public class AI : MonoBehaviour
         }
         return false;
     }
+    IEnumerator AttackCoroutine(float beforeAtk,float afterAtk)
+    {
+        if (StateChange(EnemyState.attack) == EnemyState.attack)
+        {
+            yield return new WaitForSeconds(beforeAtk);
+            AttackSector(attackRadius);
+            //todo 具体的攻击代码
+            yield return new WaitForSeconds(afterAtk);
+            StateChange(EnemyState.stand);
+        }
+        else
+        {
+            yield return null;
+        }
+    }
     EnemyState StateChange(EnemyState aim)
     {
         if (aim == EnemyState.dead)
@@ -98,10 +113,10 @@ public class AI : MonoBehaviour
     }
     void Attack()
     {
-        if (Time.time >= attackTimeStamp)
+        if (Time.time >= attackTimeStamp||enemyManager.enemyState==EnemyState.stand||enemyManager.enemyState==EnemyState.move)
         {
-            AttackSector(attackRadius);
-            attackTimeStamp += 3;
+            StartCoroutine(AttackCoroutine(0.5f, 0.5f));
+            attackTimeStamp += 2;
         }
         //todo:攻击方法
     }
