@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44338962, g: 0.49266386, b: 0.5722979, a: 1}
+  m_IndirectSpecularColor: {r: 0.44338974, g: 0.4926641, b: 0.5722983, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 17368065}
   - component: {fileID: 17368070}
   - component: {fileID: 17368071}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -164,7 +164,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 17368064}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -17187,6 +17187,21 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.10000006
       objectReference: {fileID: 0}
+    - target: {fileID: 7872482835827486311, guid: 4987dfcce9a71d349906469b9778d168,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7872482835827486311, guid: 4987dfcce9a71d349906469b9778d168,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7872482835827486311, guid: 4987dfcce9a71d349906469b9778d168,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 7880929463724598965, guid: 4987dfcce9a71d349906469b9778d168,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -17228,21 +17243,6 @@ PrefabInstance:
       value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 7872838972130821457, guid: 4987dfcce9a71d349906469b9778d168,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7872482835827486311, guid: 4987dfcce9a71d349906469b9778d168,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7872482835827486311, guid: 4987dfcce9a71d349906469b9778d168,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7872482835827486311, guid: 4987dfcce9a71d349906469b9778d168,
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.1

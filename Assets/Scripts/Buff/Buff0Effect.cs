@@ -12,11 +12,14 @@ namespace mygame
             Destroy(this.gameObject, 1.5f);
         }
 
-        private void OnCollisionEnter(Collision collision)
+        private void OnTriggerEnter(Collider other)
         {
-            if (collision.gameObject.tag == "enemy")
+            Debug.Log("trigger");
+            Debug.Log(other.gameObject.tag);
+            if (other.gameObject.tag == "Enemy")
             {
-                collision.gameObject.GetComponent<EnemyManager>().OnDamageTaken(damage);
+                Debug.Log("boom");
+                other.gameObject.GetComponent<EnemyManager>().OnDamageTaken(damage);
             }
         }
         // Update is called once per frame
