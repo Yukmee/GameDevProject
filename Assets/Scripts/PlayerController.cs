@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
         playerRigidbody = GetComponent<Rigidbody>();
         moveController = GetComponent<CharacterController>();
         playerManager = GetComponent<PlayerManager>();
-        ItemManager.instance.equip(new ItemBlock (ItemManager.instance.cover.itemList[2]));
+        ItemManager.instance.equip(new ItemBlock (ItemManager.instance.cover.itemList[3]));
     }
     void FixedUpdate()
     {
@@ -68,6 +68,8 @@ public class PlayerController : MonoBehaviour
     {
         GameObject bullet;
         bullet = Instantiate(Resources.Load("Prefab/TestBullet"), transform.position, new Quaternion()) as GameObject;
+        float s = nowWeapon.bulletScale * 0.2f;
+        bullet.transform.localScale = new Vector3(s,s,s);
         bullet.GetComponent<TestBullet>().damage = new Damage(nowWeapon.maxatk, nowWeapon.minatk, nowWeapon.critRate, nowWeapon.critPower,playerManager);
         bullet.GetComponent<TestBullet>().fire(VectorRotate(playerToMouse, angle), nowWeapon.bulletSpeed);
     }

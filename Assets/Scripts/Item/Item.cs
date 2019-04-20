@@ -57,6 +57,7 @@ namespace mygame
         public float critPower; //暴击倍率
         public int bulletNum; //每次攻击发射子弹数量,霰弹枪用
         public int bulletSpeed; //子弹飞行速度
+        public float bulletScale;//子弹大小
 
         public int fireMultiply; //多重射击
 

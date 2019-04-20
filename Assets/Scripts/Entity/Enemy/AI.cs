@@ -118,7 +118,6 @@ public class AI : MonoBehaviour
             StartCoroutine(AttackCoroutine(0.5f, 0.5f));
             attackTimeStamp += 2;
         }
-        //todo:攻击方法
     }
     void Move()
     {
