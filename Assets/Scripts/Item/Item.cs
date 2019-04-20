@@ -44,7 +44,7 @@ namespace mygame
 
         public int requLevel; //需求等级
 
-        //以下是装备用属性
+        // 以下是装备用属性
         public int def; //防御
         public int str; //力量
         public int end; //耐力
