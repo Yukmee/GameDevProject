@@ -13,9 +13,31 @@ public class UIManager : MonoBehaviour
     #region 全局变量
 
     private bool _inventoryOpened;
-    private bool _pauseMenuOpened;
+    private bool _isPaused;
 
     #endregion
+    
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+        _isPaused = true;
+    }
+
+    public void ResumeGame()
+    {
+        HideInventory();
+        HidePauseMenu();
+        
+        Time.timeScale = 1;
+        _isPaused = false;
+    }
+    
+    public void ExitLevel()
+    {
+        SceneManager.LoadSceneAsync(0);
+
+    }
+
     
     private void Awake()
     {
@@ -32,54 +54,69 @@ public class UIManager : MonoBehaviour
         // ESC to bring up Pause Menu
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            // 如果先打开了Inventory，那么就仅是隐藏Inventory而已
+            // 如果正在Pause, Resume game
+            if (_isPaused)
+            {
+                ResumeGame();
+                return;
+            }
+            
+            // 如果打开了Inventory
             if (_inventoryOpened)
             {
-                // Merely Hide Inventory Menu
-                InventoryContainer.SetActive(false); 
+                ResumeGame();
+                return;
             }
-            else // 否则才是显示PauseMenu
-            {
-                // Show Pause Menu
-                PauseMenuContainer.SetActive(true);
-                _pauseMenuOpened = true;
-                
-                // Make it pause
-                Time.timeScale = 0;
-            }
+            
+            ShowPauseMenu();
+            HideInventory();
+            
         }
         
         // "Tab" to show Inventory Menu
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            // Hide Pause Menu
-            if (_pauseMenuOpened == true)
+            // 只能是__时弹出⏏️
+            if (_isPaused)
             {
-                PauseMenuContainer.SetActive(false);
+                return;
             }
             
-            // Show Inventory Menu
-            InventoryContainer.SetActive(true);
-            _inventoryOpened = true;
-
+            // 再按一次就隐藏Inventory
+            if (_inventoryOpened)
+            {
+                HideInventory();
+                return;
+            }
+            
+            ShowInventory();
+            HidePauseMenu();
         }
        
     }
 
-    public void PauseGame()
+    private void ShowPauseMenu()
     {
-        Time.timeScale = 0;
-    }
+        PauseMenuContainer.SetActive(true);
+        PauseGame();
 
-    public void ResumeGame()
-    {
-        Time.timeScale = 1;
     }
     
-    public void ExitLevel()
+    private void HidePauseMenu()
     {
-        SceneManager.LoadSceneAsync(0);
+        PauseMenuContainer.SetActive(false);
+    }
 
+    private void ShowInventory()
+    {
+        InventoryContainer.SetActive(true);
+        _inventoryOpened = true;
+    }
+
+    private void HideInventory()
+    {
+        InventoryContainer.SetActive(false);
+        _inventoryOpened = false;
     }
     
 }
