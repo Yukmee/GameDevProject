@@ -24,6 +24,8 @@ namespace mygame
                     return new Poison();
                 case 4:
                     return new LifeRecover();
+                case 5:
+                    return new FullExplode();
                 default:
                     return new BuffBase();
             }
@@ -42,6 +44,8 @@ namespace mygame
                     return (new Poison()).describe;
                 case 4:
                     return (new LifeRecover()).describe;
+                case 5:
+                    return (new FullExplode()).describe;
                 default:
                     return (new BuffBase()).describe;
             }
@@ -62,7 +66,7 @@ namespace mygame
             {
                 PlayerManager p = (PlayerManager)aim;
                 GameObject a = UnityEngine.Object.Instantiate(Resources.Load("Prefab/BuffEffects/Buff0Effect"), victim.gameObject.transform.position, new Quaternion()) as GameObject;
-                a.GetComponent<Buff0Effect>().damage = new Damage(p.player.level * 10, p.player.level * 8, p.player.finalCritRate, p.player.finalCritPower,p);
+                a.GetComponent<Buff0Effect>().damage = new Damage(p.player.level * 10, p.player.level * 8, p.player.finalCritRate, p.player.finalCritPower);
             }
             //在victim的位置制造一个爆炸
         }
@@ -117,6 +121,44 @@ namespace mygame
                 em.OnHealTaken(new Heal(h));
             }
             //
+        }
+        public override void OnEnd()
+        {
+            if (aim.onHitDelegate != null)
+            {
+                Delegate.Remove(aim.onHitDelegate, onHitDelegate);
+            }
+        }
+        public override void OnStart()
+        {
+            onHitDelegate = new OnHitDelegate(OnExecute);
+            if (aim.onHitDelegate == null)
+            {
+                aim.onHitDelegate = onHitDelegate;
+            }
+            else
+            {
+                aim.onHitDelegate += onHitDelegate;
+            }
+        }
+    }
+    public class FullExplode : BuffBase
+    {
+        OnHitDelegate onHitDelegate;
+        public FullExplode()
+        {
+            describe = "击中时造成爆炸";
+            id = 5;
+        }
+        public void OnExecute(EntityManagerBase victim)
+        {
+            if (true)
+            {
+                PlayerManager p = (PlayerManager)aim;
+                GameObject a = UnityEngine.Object.Instantiate(Resources.Load("Prefab/BuffEffects/Buff0Effect"), victim.gameObject.transform.position, new Quaternion()) as GameObject;
+                a.GetComponent<Buff0Effect>().damage = new Damage(p.player.level * 10, p.player.level * 8, p.player.finalCritRate, p.player.finalCritPower);
+            }
+            //在victim的位置制造一个爆炸
         }
         public override void OnEnd()
         {
