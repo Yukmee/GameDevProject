@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5826901018748813274}
   - component: {fileID: 6000559617602018201}
   - component: {fileID: 6958479714684644857}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TestBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,3 +121,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17074ca9af32e9f4a95635c84b31f22e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage:
+    max: 0
+    min: 0
+    critRate: 0
+    critPower: 0
+    attacker: {fileID: 0}

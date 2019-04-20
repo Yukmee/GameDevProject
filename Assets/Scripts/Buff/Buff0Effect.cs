@@ -7,16 +7,22 @@ namespace mygame
     {
         // Start is called before the first frame update
         public Damage damage;
+        int i;
         void Start()
         {
-            Destroy(this.gameObject, 1.2f);
+            Destroy(this.gameObject, 1.5f);
+            EnemyCheck();
         }
-
-        private void OnCollisionEnter(Collision collision)
+        
+        public void EnemyCheck()
         {
-            if (collision.gameObject.tag == "enemy")
+            Collider []c = Physics.OverlapSphere(transform.position, 3);
+            for(int i = 0; i < c.Length; i++)
             {
-                collision.gameObject.GetComponent<EnemyManager>().OnDamageTaken(damage);
+                if (c[i].gameObject.tag == "Enemy")
+                {
+                    c[i].gameObject.GetComponent<EnemyManager>().OnDamageTaken(damage);
+                }
             }
         }
         // Update is called once per frame

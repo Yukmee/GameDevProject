@@ -53,13 +53,12 @@ namespace mygame
         OnHitDelegate onHitDelegate;
         public Explode()
         {
-            describe = "击中时20%几率造成爆炸";
+            describe = "击中时10%几率造成爆炸";
             id = 0;
         }
-        //todo: 寻找粒子素材 修复物理效果
         public void OnExecute(EntityManagerBase victim)
         {
-            if(UnityEngine.Random.Range(1, 100) <= 20)
+            if(UnityEngine.Random.Range(0, 100) <= 10)
             {
                 PlayerManager p = (PlayerManager)aim;
                 GameObject a = UnityEngine.Object.Instantiate(Resources.Load("Prefab/BuffEffects/Buff0Effect"), victim.gameObject.transform.position, new Quaternion()) as GameObject;
