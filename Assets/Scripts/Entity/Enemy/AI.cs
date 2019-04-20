@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using mygame;
+
 public class AI : MonoBehaviour
 {
     public float viewRadius = 35;
