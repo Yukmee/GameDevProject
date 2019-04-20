@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
         float v = Input.GetAxisRaw("Vertical");
         Dash(h,v);
         Move(h, v);//移动方法
-        Turning();//转向方法，未完成
+        Turning();//todo: 转向方法，未完成
         Attack();//攻击方法
         Cast();
     }
