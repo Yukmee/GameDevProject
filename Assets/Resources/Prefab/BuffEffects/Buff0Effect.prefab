@@ -4656,7 +4656,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 15303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 924c67402245f0f4a8e18706989028f6, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -4712,6 +4712,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1a47483dcb9d044b8f2a8b69a4b7403, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage:
+    max: 0
+    min: 0
+    critRate: 0
+    critPower: 0
 --- !u!135 &4256073027205050685
 SphereCollider:
   m_ObjectHideFlags: 0
