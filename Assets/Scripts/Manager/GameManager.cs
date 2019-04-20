@@ -10,7 +10,7 @@ using System.IO;
 public class GameManager : MonoBehaviour
 {
     public GameObject playerPrefab;
-    public Camera camera;
+    public new Camera camera;
     public ItemManager itemManager;
     public PlayerDataManager playerDataManager;
     // Start is called before the first frame update
