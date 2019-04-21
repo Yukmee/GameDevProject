@@ -20,7 +20,10 @@ namespace mygame
         public override void OnDamageTaken(Damage damage)
         {
             int dam = Random.Range(damage.min, damage.max);
+            
+            // For DEBUG Only
             Debug.Log(dam);
+            
             if (damage.attacker != null)
             {
                 damage.attacker.OnHit(this);

@@ -116,9 +116,6 @@ public class UIManager : MonoBehaviour
         var criPr = PlayerDataManager.instance.playerData.finalCritRate;
         var criPw = PlayerDataManager.instance.playerData.finalCritPower;
         
-        
-        
-        
         // Update HP bar
         hpNow.fillAmount = (float) hp / maxHp;
         // Update Magic Bar

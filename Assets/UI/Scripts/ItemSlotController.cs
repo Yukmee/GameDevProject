@@ -9,6 +9,7 @@ public class ItemSlotController : MonoBehaviour
     
     private GameObject WeaponTab;
     private ItemManager _itemManager;
+    private int index;
 
     private void Awake()
     {
@@ -20,28 +21,24 @@ public class ItemSlotController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Get Index First
-        var index = transform.GetSiblingIndex();
-
-        Debug.Log(ItemManager.instance.weaponList.Count);
+        // Get Index First, it actually works!
+        index = transform.GetSiblingIndex();
         
-        if (index < ItemManager.instance.weaponList.Count)
-        {
-
-            // TODO: - Delete me
-            Debug.Log(this + " / " + index);
-
-
-            _itemBlock = ItemManager.instance.weaponList[index];
-        }
-
-        // 
     }
 
     // Update is called once per frame
     void Update()
     {
-        ItemNumber.GetComponent<TextMeshPro>().text = _itemBlock.num.ToString();
+        // ItemNumber.GetComponent<TextMeshPro>().text = _itemBlock.num.ToString();
         
     }
+
+    private void OnMouseOver()
+    {
+        // TODO: - Display Item Info
+        Debug.Log("🅾️Mouse Hovered over index: " + index + ".");
+        
+    }
+    
+    
 }
