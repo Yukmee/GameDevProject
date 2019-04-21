@@ -12,7 +12,9 @@ public class GameManager : MonoBehaviour
     public GameObject playerPrefab;
     public new Camera camera;
     public ItemManager itemManager;
+
     public PlayerDataManager playerDataManager;
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -20,29 +22,31 @@ public class GameManager : MonoBehaviour
         ItemManager.Load("");
         itemManager = ItemManager.instance;
         PlayerDataManager.instance.playerPrefab = playerPrefab;
-        TextAsset dictionarytext = (TextAsset)Resources.Load("Dictionary");
+        TextAsset dictionarytext = (TextAsset) Resources.Load("Dictionary");
         ItemManager.instance.DictionaryInit(dictionarytext.text);
         PlayerDataManager.instance.PlayerCreate("NewPlayer");
         playerDataManager = PlayerDataManager.instance;
         camera.GetComponent<CameraFollow>().target = PlayerDataManager.instance.player.transform;
     }
+
     void Start()
     {
-        
     }
+
     void ClickManager()
     {
         if (Input.GetButton("Fire1"))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if(Physics.Raycast(ray,out hit))
+            if (Physics.Raycast(ray, out hit))
             {
                 RaycastHit[] hits = Physics.RaycastAll(ray);
                 for (int i = 0; i < hits.Length; i++)
                 {
                     if (hits[i].collider.gameObject.tag == "Item")
-                    {//
+                    {
+                        //
                         hits[i].collider.gameObject.GetComponent<ItemOnGround>().onPick();
                         break;
                     }
@@ -53,9 +57,9 @@ public class GameManager : MonoBehaviour
                     }
                 }
             }
-                
         }
     }
+
     // Update is called once per frame
     void Update()
     {

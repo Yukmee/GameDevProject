@@ -142,11 +142,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -171,6 +171,7 @@ GameObject:
   - component: {fileID: 8999844301433014302}
   - component: {fileID: 8999844301433014300}
   - component: {fileID: 8999844301433014303}
+  - component: {fileID: 903778276921893625}
   m_Layer: 5
   m_Name: ItemSlot
   m_TagString: Untagged
@@ -236,6 +237,18 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &903778276921893625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8999844301433014297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b87adb5fc5a0494b92cde235741c59d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8999844301443845167
 GameObject:
   m_ObjectHideFlags: 0
