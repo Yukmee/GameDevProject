@@ -41,7 +41,10 @@ public class ItemSlotController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ItemNumber.GetComponent<TextMeshPro>().text = _itemBlock.num.ToString();
+        if (_itemBlock != null)
+        {
+            ItemNumber.GetComponent<TextMeshPro>().text = _itemBlock.num.ToString();
+        }
         
     }
 }

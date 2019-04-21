@@ -70,19 +70,19 @@ public class UIManager : MonoBehaviour
                 ResumeGame();
                 return;
             }
-            
+
             // 如果打开了Inventory
             if (_inventoryOpened)
             {
                 ResumeGame();
                 return;
             }
-            
+
             ShowPauseMenu();
             HideInventory();
-            
+
         }
-        
+
         // "Tab" to show Inventory Menu
         if (Input.GetKeyDown(KeyCode.Tab))
         {
@@ -91,18 +91,18 @@ public class UIManager : MonoBehaviour
             {
                 return;
             }
-            
+
             // 再按一次就隐藏Inventory
             if (_inventoryOpened)
             {
                 HideInventory();
                 return;
             }
-            
+
             ShowInventory();
             HidePauseMenu();
         }
-       
+
         // Get Player's Info First
         var hp = PlayerDataManager.instance.playerData.nowHealth;
         var maxHp = PlayerDataManager.instance.playerData.maxHealth;
@@ -115,14 +115,14 @@ public class UIManager : MonoBehaviour
         var rapidValue = PlayerDataManager.instance.playerData.finalagi;
         var criPr = PlayerDataManager.instance.playerData.finalCritRate;
         var criPw = PlayerDataManager.instance.playerData.finalCritPower;
-        
-        
-        
-        
+
+
+
+
         // Update HP bar
-        hpNow.fillAmount = (float) hp / maxHp;
+        hpNow.fillAmount = (float)hp / maxHp;
         // Update Magic Bar
-        mpNow.fillAmount = (float) mp / maxMp;
+        mpNow.fillAmount = (float)mp / maxMp;
 
         // Update 人数属性Panel
         HPValue.GetComponent<Text>().text = hp + " / " + maxHp;
@@ -134,8 +134,6 @@ public class UIManager : MonoBehaviour
         IntelliValue.GetComponent<Text>().text = intelliValue.ToString();
         RapidValue.GetComponent<Text>().text = rapidValue.ToString();
         CriticalValue.GetComponent<Text>().text = criPr + "% / x" + criPw + "!";
-        
-
     }
 
     private void PauseGame()
