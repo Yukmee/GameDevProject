@@ -1863,6 +1863,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 116ac17ce23e4468ab1aa25a8bce4938,
         type: 3}
+    - target: {fileID: 1879685997056109804, guid: a6b503db4cad54c7ca7d7aeb45e58b67,
+        type: 3}
+      propertyPath: m_Name
+      value: StrengthValue
+      objectReference: {fileID: 0}
     - target: {fileID: 1879685997056109779, guid: a6b503db4cad54c7ca7d7aeb45e58b67,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -10867,6 +10872,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 908eb019e3f8944bbb0db7ebe1c8da04,
         type: 3}
+    - target: {fileID: 1879685997056109804, guid: a6b503db4cad54c7ca7d7aeb45e58b67,
+        type: 3}
+      propertyPath: m_Name
+      value: DefenseValue
+      objectReference: {fileID: 0}
     - target: {fileID: 1879685997056109779, guid: a6b503db4cad54c7ca7d7aeb45e58b67,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -21906,6 +21916,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 5e9831a494c6e4d5aa68f4aff27a6b51,
         type: 3}
+    - target: {fileID: 1879685997056109804, guid: a6b503db4cad54c7ca7d7aeb45e58b67,
+        type: 3}
+      propertyPath: m_Name
+      value: LevelValue
+      objectReference: {fileID: 0}
     - target: {fileID: 1879685997056109779, guid: a6b503db4cad54c7ca7d7aeb45e58b67,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -23013,6 +23028,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 531508cd64107464fa4156774f4beb2d,
         type: 3}
+    - target: {fileID: 1879685997056109804, guid: a6b503db4cad54c7ca7d7aeb45e58b67,
+        type: 3}
+      propertyPath: m_Name
+      value: RapidValue
+      objectReference: {fileID: 0}
     - target: {fileID: 1879685997056109779, guid: a6b503db4cad54c7ca7d7aeb45e58b67,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -23823,6 +23843,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 17fe680de2ec34eaaaa23a2a501612eb,
         type: 3}
+    - target: {fileID: 1879685997056109804, guid: a6b503db4cad54c7ca7d7aeb45e58b67,
+        type: 3}
+      propertyPath: m_Name
+      value: IntelliValue
+      objectReference: {fileID: 0}
     - target: {fileID: 1879685997056109779, guid: a6b503db4cad54c7ca7d7aeb45e58b67,
         type: 3}
       propertyPath: m_AnchoredPosition.x

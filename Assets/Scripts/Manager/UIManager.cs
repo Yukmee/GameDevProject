@@ -18,6 +18,15 @@ public class UIManager : MonoBehaviour
     // 人物属性
     private GameObject HPValue;
     private GameObject MPValue;
+    private GameObject LevelValue;
+    private GameObject DefenseValue;
+    
+    private GameObject StrengthValue;
+    private GameObject IntelliValue;
+    private GameObject RapidValue;
+    private GameObject CriticalValue;
+    
+    
     
     #endregion
 
@@ -36,6 +45,14 @@ public class UIManager : MonoBehaviour
         mpNow = GameObject.Find("MPNow").GetComponent<Image>();
         HPValue = GameObject.Find("HPValue");
         MPValue = GameObject.Find("MPValue");
+        LevelValue = GameObject.Find("LevelValue");
+        DefenseValue = GameObject.Find("DefenseValue");
+        
+        StrengthValue = GameObject.Find("StrengthValue");
+        IntelliValue = GameObject.Find("IntelliValue");
+        RapidValue = GameObject.Find("RapidValue");
+        CriticalValue = GameObject.Find("CriticalValue");
+        
         
         // Hide things first
         InventoryContainer.SetActive(false);
@@ -86,21 +103,37 @@ public class UIManager : MonoBehaviour
             HidePauseMenu();
         }
        
-        // Update HP bar
+        // Get Player's Info First
         var hp = PlayerDataManager.instance.playerData.nowHealth;
         var maxHp = PlayerDataManager.instance.playerData.maxHealth;
-        hpNow.fillAmount = (float) hp / maxHp;
-
-        // Update Magic Bar
         var mp = PlayerDataManager.instance.playerData.nowMana;
         var maxMp = PlayerDataManager.instance.playerData.maxMana;
-        // TODO: - Delete me
-        Debug.Log("👋MP: " + mp + ", " + maxMp);
+        var playerLevel = PlayerDataManager.instance.playerData.level;
+        var defenseValue = PlayerDataManager.instance.playerData.finaldef;
+        var strengthValue = PlayerDataManager.instance.playerData.finalstr;
+        var intelliValue = PlayerDataManager.instance.playerData.finalinte;
+        var rapidValue = PlayerDataManager.instance.playerData.finalagi;
+        var criPr = PlayerDataManager.instance.playerData.finalCritRate;
+        var criPw = PlayerDataManager.instance.playerData.finalCritPower;
+        
+        
+        
+        
+        // Update HP bar
+        hpNow.fillAmount = (float) hp / maxHp;
+        // Update Magic Bar
         mpNow.fillAmount = (float) mp / maxMp;
 
-        // Update 人数属性
+        // Update 人数属性Panel
         HPValue.GetComponent<Text>().text = hp + " / " + maxHp;
         MPValue.GetComponent<Text>().text = mp + " / " + maxMp;
+        LevelValue.GetComponent<Text>().text = "Level " + playerLevel;
+        DefenseValue.GetComponent<Text>().text = defenseValue.ToString();
+
+        StrengthValue.GetComponent<Text>().text = defenseValue.ToString();
+        IntelliValue.GetComponent<Text>().text = intelliValue.ToString();
+        RapidValue.GetComponent<Text>().text = rapidValue.ToString();
+        CriticalValue.GetComponent<Text>().text = criPr + "% / x" + criPw + "!";
         
 
     }
