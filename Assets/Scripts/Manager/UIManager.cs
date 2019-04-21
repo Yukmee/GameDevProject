@@ -54,13 +54,6 @@ public class UIManager : MonoBehaviour
         PauseMenuContainer.SetActive(false);
     }
 
-    private void Start()
-    {
-        
-    }
-
-    // TODO: - Delete
-    private float fill = 1f;
     private void Update()
     {
         // ESC to bring up Pause Menu
@@ -105,18 +98,10 @@ public class UIManager : MonoBehaviour
             HidePauseMenu();
         }
        
-        // TODO: - Update HP bar
+        // Update HP bar
         var hp = PlayerDataManager.instance.playerData.nowHealth;
         var maxHp = PlayerDataManager.instance.playerData.maxHealth;
-        // Debug.Log("HP Now: " + PlayerDataManager.instance.playerData.nowHealth);
-        // Debug.Log("HP MAX: " + PlayerDataManager.instance.playerData.maxHealth);
-        
-        // TODO: - Delete
         hpNow.fillAmount = (float) hp / maxHp;
-        
-        // TODO: - Delete
-        fill -= 0.01f;
-        Debug.Log("Fill Amount: " + hpNow.fillAmount);
 
         // TODO: - Update Magic Bar
 
