@@ -1,10 +1,10 @@
-{
+﻿{
 "itemList":
 [
 {
 "itemId":0,
 "type":1,
-"name":"OldAutogun",
+"name":"旧式自动手枪",
 "ItemLevel":1,
 "requLevel":1,
 "minatk":3,
@@ -18,13 +18,13 @@
 {
 "itemId":1,
 "type":0,
-"name":"OldShotgun",
+"name":"旧式霰弹枪",
 "ItemLevel":1,
 "requLevel":1,
 "minatk":2,
 "maxatk":4,
 "atkCooldown":1.2,
-"bulletNum":4,
+"bulletNum":6,
 "bulletSpeed":15,
 "fireMultiply":1,
 "bulletScale":1,
@@ -48,7 +48,7 @@
 {
 "itemId":3,
 "type":1,
-"name":"BurningKnuckleCannon",
+"name":"炙炎手炮",
 "ItemLevel":1,
 "requLevel":1,
 "minatk":10,
