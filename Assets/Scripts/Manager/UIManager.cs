@@ -105,10 +105,13 @@ public class UIManager : MonoBehaviour
         var maxHp = PlayerDataManager.instance.playerData.maxHealth;
         hpNow.fillAmount = (float) hp / maxHp;
 
-        // TODO: - Update Magic Bar
+        // Update Magic Bar
         var mp = PlayerDataManager.instance.playerData.nowMana;
         var maxMp = PlayerDataManager.instance.playerData.maxMana;
+        
+        // TODO: - Delete me
         Debug.Log("👋MP: " + mp + ", " + maxMp);
+        
         mpNow.fillAmount = (float) mp / maxMp;
 
     }
@@ -116,6 +119,11 @@ public class UIManager : MonoBehaviour
     private void ShowPauseMenu()
     {
         PauseMenuContainer.SetActive(true);
+        
+        // Advanced Show "SetActive"
+        PauseMenuContainer.GetComponent<CanvasGroup>().alpha = 1;
+        PauseMenuContainer.GetComponent<CanvasGroup>().interactable = true;
+        PauseMenuContainer.GetComponent<CanvasGroup>().blocksRaycasts = true;
         PauseGame();
 
     }
