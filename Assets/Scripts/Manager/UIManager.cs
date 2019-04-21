@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+// ReSharper disable once CheckNamespace
 public class UIManager : MonoBehaviour
 {
     #region 引用
@@ -10,8 +11,13 @@ public class UIManager : MonoBehaviour
     private GameObject InventoryContainer;
     private GameObject PauseMenuContainer;
 
+    // HP&MP Bar
     private Image hpNow;
     private Image mpNow;
+    
+    // 人物属性
+    private GameObject HPValue;
+    private GameObject MPValue;
     
     #endregion
 
@@ -22,34 +28,14 @@ public class UIManager : MonoBehaviour
 
     #endregion
 
-    private void PauseGame()
-    {
-        Time.timeScale = 0;
-        _isPaused = true;
-    }
-
-    public void ResumeGame()
-    {
-        HideInventory();
-        HidePauseMenu();
-        
-        Time.timeScale = 1;
-        _isPaused = false;
-    }
-    
-    public void ExitLevel()
-    {
-        SceneManager.LoadSceneAsync(0);
-
-    }
-
-    
     private void Awake()
     {
         InventoryContainer = GameObject.Find("InventoryCtnr");
         PauseMenuContainer = GameObject.Find("PauseMenuCtnr");
         hpNow = GameObject.Find("HPNow").GetComponent<Image>();
         mpNow = GameObject.Find("MPNow").GetComponent<Image>();
+        HPValue = GameObject.Find("HPValue");
+        MPValue = GameObject.Find("MPValue");
         
         // Hide things first
         InventoryContainer.SetActive(false);
@@ -108,14 +94,38 @@ public class UIManager : MonoBehaviour
         // Update Magic Bar
         var mp = PlayerDataManager.instance.playerData.nowMana;
         var maxMp = PlayerDataManager.instance.playerData.maxMana;
-        
         // TODO: - Delete me
         Debug.Log("👋MP: " + mp + ", " + maxMp);
-        
         mpNow.fillAmount = (float) mp / maxMp;
+
+        // Update 人数属性
+        HPValue.GetComponent<Text>().text = hp + " / " + maxHp;
+        MPValue.GetComponent<Text>().text = mp + " / " + maxMp;
+        
 
     }
 
+    private void PauseGame()
+    {
+        Time.timeScale = 0;
+        _isPaused = true;
+    }
+
+    public void ResumeGame()
+    {
+        HideInventory();
+        HidePauseMenu();
+        
+        Time.timeScale = 1;
+        _isPaused = false;
+    }
+    
+    public void ExitLevel()
+    {
+        SceneManager.LoadSceneAsync(0);
+
+    }
+    
     private void ShowPauseMenu()
     {
         PauseMenuContainer.SetActive(true);
