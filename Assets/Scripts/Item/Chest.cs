@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace mygame
 {
+    /// <summary>
+    /// 箱子📦
+    /// </summary>
     public class Chest : MonoBehaviour
     {
         public int itemLevel;

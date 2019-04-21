@@ -122,6 +122,7 @@ namespace mygame
         public static Item CreateRing(int itemLevel)
         {
             List<Item> rList = new List<Item>();
+            
             for (int i = 0; i < ItemManager.instance.itemDictionary.Count; i++)
             {
                 if (ItemManager.instance.itemDictionary[i].ItemLevel == itemLevel &&
@@ -130,7 +131,7 @@ namespace mygame
                     rList.Add(TransReflection<Item, Item>(ItemManager.instance.itemDictionary[i]));
                 }
             }
-
+            
             if (rList.Count == 0)
             {
                 return null;
