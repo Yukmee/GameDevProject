@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
         ItemManager.Load("");
         itemManager = ItemManager.instance;
         PlayerDataManager.instance.playerPrefab = playerPrefab;
+        PlayerDataManager.instance.gameManager = gameObject;
         TextAsset dictionarytext = (TextAsset)Resources.Load("Dictionary");
         ItemManager.instance.DictionaryInit(dictionarytext.text);
         PlayerDataManager.instance.PlayerCreate("NewPlayer");
