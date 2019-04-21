@@ -6,11 +6,12 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     #region 引用
-    
-    GameObject InventoryContainer;
-    GameObject PauseMenuContainer;
 
-    Image hpNow;
+    private GameObject InventoryContainer;
+    private GameObject PauseMenuContainer;
+
+    private Image hpNow;
+    private Image mpNow;
     
     #endregion
 
@@ -48,6 +49,7 @@ public class UIManager : MonoBehaviour
         InventoryContainer = GameObject.Find("InventoryCtnr");
         PauseMenuContainer = GameObject.Find("PauseMenuCtnr");
         hpNow = GameObject.Find("HPNow").GetComponent<Image>();
+        mpNow = GameObject.Find("MPNow").GetComponent<Image>();
         
         // Hide things first
         InventoryContainer.SetActive(false);
@@ -104,6 +106,10 @@ public class UIManager : MonoBehaviour
         hpNow.fillAmount = (float) hp / maxHp;
 
         // TODO: - Update Magic Bar
+        var mp = PlayerDataManager.instance.playerData.nowMana;
+        var maxMp = PlayerDataManager.instance.playerData.maxMana;
+        Debug.Log("👋MP: " + mp + ", " + maxMp);
+        mpNow.fillAmount = (float) mp / maxMp;
 
     }
 
