@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using mygame;
+using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -7,6 +9,8 @@ public class UIManager : MonoBehaviour
     
     GameObject InventoryContainer;
     GameObject PauseMenuContainer;
+
+    Image hpNow;
     
     #endregion
 
@@ -16,8 +20,8 @@ public class UIManager : MonoBehaviour
     private bool _isPaused;
 
     #endregion
-    
-    public void PauseGame()
+
+    private void PauseGame()
     {
         Time.timeScale = 0;
         _isPaused = true;
@@ -43,12 +47,20 @@ public class UIManager : MonoBehaviour
     {
         InventoryContainer = GameObject.Find("InventoryCtnr");
         PauseMenuContainer = GameObject.Find("PauseMenuCtnr");
+        hpNow = GameObject.Find("HPNow").GetComponent<Image>();
         
         // Hide things first
         InventoryContainer.SetActive(false);
         PauseMenuContainer.SetActive(false);
     }
 
+    private void Start()
+    {
+        
+    }
+
+    // TODO: - Delete
+    private float fill = 1f;
     private void Update()
     {
         // ESC to bring up Pause Menu
@@ -93,6 +105,21 @@ public class UIManager : MonoBehaviour
             HidePauseMenu();
         }
        
+        // TODO: - Update HP bar
+        var hp = PlayerDataManager.instance.playerData.nowHealth;
+        var maxHp = PlayerDataManager.instance.playerData.maxHealth;
+        // Debug.Log("HP Now: " + PlayerDataManager.instance.playerData.nowHealth);
+        // Debug.Log("HP MAX: " + PlayerDataManager.instance.playerData.maxHealth);
+        
+        // TODO: - Delete
+        hpNow.fillAmount = (float) hp / maxHp;
+        
+        // TODO: - Delete
+        fill -= 0.01f;
+        Debug.Log("Fill Amount: " + hpNow.fillAmount);
+
+        // TODO: - Update Magic Bar
+
     }
 
     private void ShowPauseMenu()
