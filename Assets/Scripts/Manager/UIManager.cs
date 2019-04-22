@@ -117,8 +117,6 @@ public class UIManager : MonoBehaviour
         var criPw = PlayerDataManager.instance.playerData.finalCritPower;
 
 
-
-
         // Update HP bar
         hpNow.fillAmount = (float)hp / maxHp;
         // Update Magic Bar
@@ -134,6 +132,13 @@ public class UIManager : MonoBehaviour
         IntelliValue.GetComponent<Text>().text = intelliValue.ToString();
         RapidValue.GetComponent<Text>().text = rapidValue.ToString();
         CriticalValue.GetComponent<Text>().text = criPr + "% / x" + criPw + "!";
+        
+        // Update 右边的装备栏
+        var weapon = ItemManager.instance.nowWeapon;
+        var armour = ItemManager.instance.nowArmor;
+        var ring = ItemManager.instance.nowRing;
+        var shield = ItemManager.instance.nowShield;
+
     }
 
     private void PauseGame()
